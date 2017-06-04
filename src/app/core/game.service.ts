@@ -18,7 +18,11 @@ export class GameService {
     const counts = this.counter.calculate(this.cells)
     Array.from(counts.entries()).forEach(([cell, count]) => {
       this.strategies.forEach(strategy => {
-        strategy.applicableTo(count)
+        if (strategy.applicableTo(count)) {
+          const [x, y] = this.serializer.deserialize(cell)
+          const newStatus = strategy.apply(count, this.getStatus(x, y))
+          this.setStatus(cell, newStatus)
+        }
       })
     })
   }
@@ -34,6 +38,14 @@ export class GameService {
       this.cells.delete(key)
     } else {
       this.cells.add(key)
+    }
+  }
+
+  private setStatus(cell: string, status: boolean): void {
+    if (status) {
+      this.cells.add(cell)
+    } else {
+      this.cells.delete(cell)
     }
   }
 }
