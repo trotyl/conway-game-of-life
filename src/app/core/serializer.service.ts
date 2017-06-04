@@ -7,6 +7,6 @@ export class SerializerService {
   }
 
   deserialize(token: string): [number, number] {
-    return null
+    return token.split(',').map(s => Number.parseInt(s)) as [number, number]
   }
 }
