@@ -12,7 +12,7 @@ export class ContainerComponent implements OnInit {
 
   constructor(private gameService: GameService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.rows = new Array(20).fill(0).map((x, i) => i)
     this.columns = new Array(20).fill(0).map((x, i) => i)
   }
@@ -21,7 +21,7 @@ export class ContainerComponent implements OnInit {
     return this.gameService.getStatus(row, column)
   }
 
-  toggleCell(row: number, column: number) {
+  toggleCell(row: number, column: number): void {
     this.gameService.toggleStatus(row, column)
   }
 }

@@ -6,5 +6,5 @@ export class GameService {
     return false
   }
 
-  toggleStatus(row: number, column: number) { }
+  toggleStatus(row: number, column: number): void { }
 }
