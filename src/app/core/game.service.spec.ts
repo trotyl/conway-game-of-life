@@ -39,8 +39,8 @@ describe('GameService', () => {
 
   it('should calculate the neighbor count', inject([
     GameService, NeighborCounterService
-  ], (service: GameService, neighborCounterService: NeighborCounterService) => {
-    const spy = spyOn(neighborCounterService, 'calculate').and.returnValue(new Map())
+  ], (service: GameService, counter: NeighborCounterService) => {
+    const spy = spyOn(counter, 'calculate').and.returnValue(new Map())
 
     service.toggleStatus(1, 2)
     service.evolve()

@@ -44,28 +44,28 @@ describe('ContainerComponent', () => {
     expect(component.columns.length).toBe(20)
   })
 
-  it('should toggle cell status in game', inject([GameService], (gameService: GameService) =>  {
-    spyOn(gameService, 'toggleStatus')
+  it('should toggle cell status in game', inject([GameService], (game: GameService) =>  {
+    spyOn(game, 'toggleStatus')
 
     component.toggleCell(1, 2)
 
-    expect(gameService.toggleStatus).toHaveBeenCalledWith(1, 2)
+    expect(game.toggleStatus).toHaveBeenCalledWith(1, 2)
   }))
 
-  it('should get cell status from game', inject([GameService], (gameService: GameService) => {
-    spyOn(gameService, 'getStatus').and.returnValue(true)
+  it('should get cell status from game', inject([GameService], (game: GameService) => {
+    spyOn(game, 'getStatus').and.returnValue(true)
 
     const status = component.isCellAlive(1, 2)
 
     expect(status).toBe(true)
-    expect(gameService.getStatus).toHaveBeenCalledWith(1, 2)
+    expect(game.getStatus).toHaveBeenCalledWith(1, 2)
   }))
 
-  it('should be able to step', inject([GameService], (gameService: GameService) => {
-    spyOn(gameService, 'evolve')
+  it('should be able to step', inject([GameService], (game: GameService) => {
+    spyOn(game, 'evolve')
 
     component.step()
 
-    expect(gameService.evolve).toHaveBeenCalled()
+    expect(game.evolve).toHaveBeenCalled()
   }))
 })

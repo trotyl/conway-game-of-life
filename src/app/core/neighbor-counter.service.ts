@@ -4,23 +4,23 @@ import { SerializerService } from './serializer.service'
 
 @Injectable()
 export class NeighborCounterService {
-  constructor(private serializerService: SerializerService) { }
+  constructor(private serializer: SerializerService) { }
 
   calculate(cells: Set<string>): Map<string, number> {
     const counts = new Map<string, number>()
 
     cells.forEach((cell) => {
-      const [x, y] = this.serializerService.deserialize(cell)
+      const [x, y] = this.serializer.deserialize(cell)
 
       const neighbors = [
-        this.serializerService.serialize(x - 1, y - 1),
-        this.serializerService.serialize(x - 1, y),
-        this.serializerService.serialize(x - 1, y + 1),
-        this.serializerService.serialize(x, y - 1),
-        this.serializerService.serialize(x, y + 1),
-        this.serializerService.serialize(x + 1, y - 1),
-        this.serializerService.serialize(x + 1, y),
-        this.serializerService.serialize(x + 1, y + 1),
+        this.serializer.serialize(x - 1, y - 1),
+        this.serializer.serialize(x - 1, y),
+        this.serializer.serialize(x - 1, y + 1),
+        this.serializer.serialize(x, y - 1),
+        this.serializer.serialize(x, y + 1),
+        this.serializer.serialize(x + 1, y - 1),
+        this.serializer.serialize(x + 1, y),
+        this.serializer.serialize(x + 1, y + 1),
       ]
 
       neighbors.forEach(neighbor => {

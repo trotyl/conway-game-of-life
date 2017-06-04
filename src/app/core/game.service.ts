@@ -8,21 +8,21 @@ export class GameService {
   private readonly cells = new Set<string>()
 
   constructor(
-    private neighborCounterService: NeighborCounterService,
-    private serializerService: SerializerService,
+    private counter: NeighborCounterService,
+    private serializer: SerializerService,
   ) { }
 
   evolve(): void {
-    this.neighborCounterService.calculate(this.cells)
+    this.counter.calculate(this.cells)
   }
 
   getStatus(row: number, column: number): boolean {
-    const key = this.serializerService.serialize(row, column)
+    const key = this.serializer.serialize(row, column)
     return this.cells.has(key)
   }
 
   toggleStatus(row: number, column: number): void {
-    const key = this.serializerService.serialize(row, column)
+    const key = this.serializer.serialize(row, column)
     if (this.cells.has(key)) {
       this.cells.delete(key)
     } else {
