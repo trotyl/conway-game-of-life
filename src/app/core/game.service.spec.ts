@@ -83,4 +83,17 @@ describe('GameService', () => {
     expect(spy).toHaveBeenCalledWith(1, false)
     expect(service.getStatus(1, 2)).toBeTruthy()
   }))
+
+  it('should not apply strategy if not applicable', inject([
+    GameService, NeighborCounterService, EVOLVE_STRATEGIES
+  ], (service: GameService, counter: NeighborCounterService, [strategy]: EvolveStategy[]) => {
+    spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
+    spyOn(strategy, 'applicableTo').and.returnValue(false)
+    const spy = spyOn(strategy, 'apply').and.returnValue(true)
+
+    service.evolve()
+
+    expect(spy).not.toHaveBeenCalled()
+    expect(service.getStatus(1, 2)).toBeFalsy()
+  }))
 })
