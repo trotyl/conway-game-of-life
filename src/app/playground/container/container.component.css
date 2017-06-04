@@ -1,13 +1,22 @@
-.container {
+.grid-row {
   display: flex; /* or inline-flex */
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
-.item {
+.grid-cell {
   width: 20px;
   min-width: 20px;
   height: 20px;
   margin: 2px;
   background-color: lightblue;
+}
+
+.controls-panel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
