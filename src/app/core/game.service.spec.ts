@@ -22,4 +22,12 @@ describe('GameService', () => {
 
     expect(service.getStatus(1, 2)).toBe(true)
   }))
+
+  it('should support toggle alive to dead', inject([GameService], (service: GameService) => {
+    service.toggleStatus(1, 2)
+
+    service.toggleStatus(1, 2)
+
+    expect(service.getStatus(1, 2)).toBe(false)
+  }))
 })
