@@ -18,6 +18,10 @@ export class ContainerComponent implements OnInit {
     this.columns = new Array(20).fill(0).map((x, i) => i)
   }
 
+  clear(): void {
+    this.game.reset()
+  }
+
   isCellAlive(row: number, column: number): boolean {
     return this.game.getStatus(row, column)
   }

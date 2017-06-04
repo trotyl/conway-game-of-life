@@ -12,6 +12,7 @@ describe('ContainerComponent', () => {
     mockGameService = {
       evolve: () => {},
       getStatus: () => false,
+      reset: () => {},
       toggleStatus: () => {},
     } as any
   })
@@ -67,5 +68,13 @@ describe('ContainerComponent', () => {
     component.step()
 
     expect(game.evolve).toHaveBeenCalled()
+  }))
+
+  it('should be able to restart', inject([Game], (game: Game) => {
+    spyOn(game, 'reset')
+
+    component.clear()
+
+    expect(game.reset).toHaveBeenCalled()
   }))
 })

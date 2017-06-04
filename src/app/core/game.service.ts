@@ -34,6 +34,8 @@ export class Game {
     return this.cells.has(key)
   }
 
+  reset(): void { }
+
   toggleStatus(row: number, column: number): void {
     const key = this.serializer.serialize(row, column)
     this.setStatus(key, !this.cells.has(key))
