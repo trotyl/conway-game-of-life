@@ -9,20 +9,20 @@ describe('SurvivalStrategy', () => {
     })
   })
 
-  it('should be created', inject([SurvivalStrategy], (service: SurvivalStrategy) => {
-    expect(service).toBeTruthy()
+  it('should be created', inject([SurvivalStrategy], (strategy: SurvivalStrategy) => {
+    expect(strategy).toBeTruthy()
   }))
 
-  it('should only applicable to cell with 3 neighbors', inject([SurvivalStrategy], (service: SurvivalStrategy) => {
-    expect(service.applicableTo(0)).toBeFalsy()
-    expect(service.applicableTo(1)).toBeFalsy()
-    expect(service.applicableTo(2)).toBeFalsy()
-    expect(service.applicableTo(3)).toBeTruthy()
-    expect(service.applicableTo(4)).toBeFalsy()
+  it('should only applicable to cell with 3 neighbors', inject([SurvivalStrategy], (strategy: SurvivalStrategy) => {
+    expect(strategy.applicableTo(0)).toBeFalsy()
+    expect(strategy.applicableTo(1)).toBeFalsy()
+    expect(strategy.applicableTo(2)).toBeFalsy()
+    expect(strategy.applicableTo(3)).toBeTruthy()
+    expect(strategy.applicableTo(4)).toBeFalsy()
   }))
 
-  it('should always be alive', inject([SurvivalStrategy], (service: SurvivalStrategy) => {
-    expect(service.apply(true)).toBeTruthy()
-    expect(service.apply(false)).toBeTruthy()
+  it('should always be alive', inject([SurvivalStrategy], (strategy: SurvivalStrategy) => {
+    expect(strategy.apply(true)).toBeTruthy()
+    expect(strategy.apply(false)).toBeTruthy()
   }))
 })

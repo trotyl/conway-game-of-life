@@ -9,20 +9,20 @@ describe('InvariantStrategy', () => {
     })
   })
 
-  it('should be created', inject([InvariantStrategy], (service: InvariantStrategy) => {
-    expect(service).toBeTruthy()
+  it('should be created', inject([InvariantStrategy], (strategy: InvariantStrategy) => {
+    expect(strategy).toBeTruthy()
   }))
 
-  it('should only applicable to cell with 2 neighbors', inject([InvariantStrategy], (service: InvariantStrategy) => {
-    expect(service.applicableTo(0)).toBeFalsy()
-    expect(service.applicableTo(1)).toBeFalsy()
-    expect(service.applicableTo(2)).toBeTruthy()
-    expect(service.applicableTo(3)).toBeFalsy()
-    expect(service.applicableTo(4)).toBeFalsy()
+  it('should only applicable to cell with 2 neighbors', inject([InvariantStrategy], (strategy: InvariantStrategy) => {
+    expect(strategy.applicableTo(0)).toBeFalsy()
+    expect(strategy.applicableTo(1)).toBeFalsy()
+    expect(strategy.applicableTo(2)).toBeTruthy()
+    expect(strategy.applicableTo(3)).toBeFalsy()
+    expect(strategy.applicableTo(4)).toBeFalsy()
   }))
 
-  it('should keep current status', inject([InvariantStrategy], (service: InvariantStrategy) => {
-    expect(service.apply(true)).toBeTruthy()
-    expect(service.apply(false)).toBeFalsy()
+  it('should keep current status', inject([InvariantStrategy], (strategy: InvariantStrategy) => {
+    expect(strategy.apply(true)).toBeTruthy()
+    expect(strategy.apply(false)).toBeFalsy()
   }))
 })

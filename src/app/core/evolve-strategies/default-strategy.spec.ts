@@ -9,20 +9,20 @@ describe('DefaultStrategy', () => {
     })
   })
 
-  it('should be created', inject([DefaultStrategy], (service: DefaultStrategy) => {
-    expect(service).toBeTruthy()
+  it('should be created', inject([DefaultStrategy], (strategy: DefaultStrategy) => {
+    expect(strategy).toBeTruthy()
   }))
 
-  it('should applicable to all cells', inject([DefaultStrategy], (service: DefaultStrategy) => {
-    expect(service.applicableTo(0)).toBeTruthy()
-    expect(service.applicableTo(1)).toBeTruthy()
-    expect(service.applicableTo(2)).toBeTruthy()
-    expect(service.applicableTo(3)).toBeTruthy()
-    expect(service.applicableTo(4)).toBeTruthy()
+  it('should applicable to all cells', inject([DefaultStrategy], (strategy: DefaultStrategy) => {
+    expect(strategy.applicableTo(0)).toBeTruthy()
+    expect(strategy.applicableTo(1)).toBeTruthy()
+    expect(strategy.applicableTo(2)).toBeTruthy()
+    expect(strategy.applicableTo(3)).toBeTruthy()
+    expect(strategy.applicableTo(4)).toBeTruthy()
   }))
 
-  it('should always die', inject([DefaultStrategy], (service: DefaultStrategy) => {
-    expect(service.apply(true)).toBeFalsy()
-    expect(service.apply(false)).toBeFalsy()
+  it('should always die', inject([DefaultStrategy], (strategy: DefaultStrategy) => {
+    expect(strategy.apply(true)).toBeFalsy()
+    expect(strategy.apply(false)).toBeFalsy()
   }))
 })
