@@ -25,4 +25,8 @@ export class ContainerComponent implements OnInit {
   toggleCell(row: number, column: number): void {
     this.gameService.toggleStatus(row, column)
   }
+
+  step(): void {
+    this.gameService.evolve()
+  }
 }

@@ -10,6 +10,7 @@ describe('ContainerComponent', () => {
 
   beforeEach(() => {
     mockGameService = {
+      evolve: () => {},
       getStatus: () => false,
       toggleStatus: () => {},
     } as any
@@ -58,5 +59,13 @@ describe('ContainerComponent', () => {
 
     expect(status).toBe(true)
     expect(gameService.getStatus).toHaveBeenCalledWith(1, 2)
+  }))
+
+  it('should be able to step', inject([GameService], (gameService: GameService) => {
+    spyOn(gameService, 'evolve')
+
+    component.step()
+
+    expect(gameService.evolve).toHaveBeenCalled()
   }))
 })

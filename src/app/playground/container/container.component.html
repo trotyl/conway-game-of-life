@@ -2,5 +2,5 @@
   <figure *ngFor="let column of columns" class="grid-cell" [class.alive]="isCellAlive(row, column)" (click)="toggleCell(row, column)"></figure>
 </div>
 <div class="controls-panel">
-  <button>Next</button>
+  <button (click)="step()">Next</button>
 </div>

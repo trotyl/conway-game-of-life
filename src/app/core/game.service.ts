@@ -8,6 +8,8 @@ function serialize(row: number, column: number) {
 export class GameService {
   private readonly cells = new Map<string, boolean>()
 
+  evolve(): void { }
+
   getStatus(row: number, column: number): boolean {
     const key = serialize(row, column)
     if (!this.cells.has(key)) {
