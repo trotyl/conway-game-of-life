@@ -1,13 +1,24 @@
 import { TestBed, inject } from '@angular/core/testing'
 
+import { EVOLVE_STRATEGIES, EvolveStategy } from './evolve-strategies'
 import { GameService } from './game.service'
 import { NeighborCounterService } from './neighbor-counter.service'
 import { SerializerService } from './serializer.service'
 
 describe('GameService', () => {
+  let mockStrategies: EvolveStategy[]
+
+  beforeEach(() => {
+    mockStrategies = [{
+      applicableTo: () => true,
+      apply: () => false
+    }]
+  })
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        { provide: EVOLVE_STRATEGIES, useValue: mockStrategies },
         SerializerService,
         NeighborCounterService,
         GameService,
@@ -47,5 +58,16 @@ describe('GameService', () => {
 
     const [cells] = spy.calls.mostRecent().args as [Set<string>]
     expect(cells.has('1,2')).toBe(true)
+  }))
+
+  it('should use evolve strategies for neighbored cells', inject([
+    GameService, NeighborCounterService, EVOLVE_STRATEGIES
+  ], (service: GameService, counter: NeighborCounterService, [strategy]: EvolveStategy[]) => {
+    spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
+    const spy = spyOn(strategy, 'applicableTo')
+
+    service.evolve()
+
+    expect(spy).toHaveBeenCalledWith(1)
   }))
 })

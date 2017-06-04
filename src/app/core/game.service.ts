@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core'
+import { Inject, Injectable } from '@angular/core'
 
+import { EVOLVE_STRATEGIES, EvolveStategy } from './evolve-strategies'
 import { NeighborCounterService } from './neighbor-counter.service'
 import { SerializerService } from './serializer.service'
 
@@ -8,12 +9,18 @@ export class GameService {
   private readonly cells = new Set<string>()
 
   constructor(
+    @Inject(EVOLVE_STRATEGIES) private strategies: EvolveStategy[],
     private counter: NeighborCounterService,
     private serializer: SerializerService,
   ) { }
 
   evolve(): void {
-    this.counter.calculate(this.cells)
+    const counts = this.counter.calculate(this.cells)
+    Array.from(counts.entries()).forEach(([cell, count]) => {
+      this.strategies.forEach(strategy => {
+        strategy.applicableTo(count)
+      })
+    })
   }
 
   getStatus(row: number, column: number): boolean {
