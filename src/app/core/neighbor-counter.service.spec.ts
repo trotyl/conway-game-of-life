@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing'
 
 import { NeighborCounterService } from './neighbor-counter.service'
 import { SerializerService } from './serializer.service'
-import { parsePositions, parseCounts } from './test-utils'
+import { parsePositions, parseCounts, toSortedArray } from './test-utils'
 
 describe('NeighborCounterService', () => {
   beforeEach(() => {
@@ -26,11 +26,11 @@ describe('NeighborCounterService', () => {
       ----
     `))
 
-    expect(Array.from(counts.entries()).sort()).toEqual(parseCounts(`
+    expect(toSortedArray(counts.entries())).toEqual(parseCounts(`
       1221
       2221
       2231
       1110
-    `).sort())
+    `))
   }))
 })

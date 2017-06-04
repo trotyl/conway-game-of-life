@@ -24,4 +24,9 @@ export function parseCounts(mockup: string): [string, number][] {
   return parseMockup(mockup)
     .filter(({ c }) => c !== '0')
     .map(({ x, y, c }) => [`${x},${y}`, Number.parseInt(c)] as [string, number])
+    .sort()
+}
+
+export function toSortedArray<T>(iterable: Iterable<T>): T[] {
+  return Array.from(iterable).sort()
 }
