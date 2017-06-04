@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { GameService } from 'app/core/game.service'
 
 @Component({
   selector: 'app-container',
@@ -9,8 +10,14 @@ export class ContainerComponent implements OnInit {
   rows: number[]
   columns: number[]
 
+  constructor(private gameService: GameService) { }
+
   ngOnInit() {
     this.rows = new Array(20).fill(0).map((x, i) => i)
     this.columns = new Array(20).fill(0).map((x, i) => i)
+  }
+
+  toggleCell(row: number, column: number) {
+    this.gameService.toggleStatus(row, column)
   }
 }

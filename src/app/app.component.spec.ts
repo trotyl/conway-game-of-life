@@ -1,14 +1,20 @@
+import { Component } from '@angular/core'
 import { TestBed, async } from '@angular/core/testing'
 
 import { AppComponent } from './app.component'
-import { ContainerComponent } from './playground'
+
+@Component({
+  selector: 'app-container',
+  template: ''
+})
+class MockContainerComponent { }
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ContainerComponent
+        MockContainerComponent
       ],
     }).compileComponents()
   }))
