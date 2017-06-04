@@ -96,6 +96,14 @@ describe('Game basics', () => {
     expect(spy).not.toHaveBeenCalled()
     expect(service.getStatus(1, 2)).toBeFalsy()
   }))
+
+  it('should be able to reset', inject([Game], (service: Game) => {
+    service.toggleStatus(1, 2)
+
+    service.reset()
+
+    expect(service.getStatus(1, 2)).toBe(false)
+  }))
 })
 
 describe('Game with multi strategy', () => {
