@@ -14,12 +14,12 @@ describe('NeighborCounter', () => {
     })
   })
 
-  it('should be created', inject([NeighborCounter], (service: NeighborCounter) => {
-    expect(service).toBeTruthy()
+  it('should be created', inject([NeighborCounter], (counter: NeighborCounter) => {
+    expect(counter).toBeTruthy()
   }))
 
-  it('should be able to count neighbors', inject([NeighborCounter], (service: NeighborCounter) => {
-    const counts = service.calculate(parsePositions(`
+  it('should be able to count neighbors', inject([NeighborCounter], (counter: NeighborCounter) => {
+    const counts = counter.calculate(parsePositions(`
       ----
       -XX-
       -X--
