@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { ContainerComponent } from './playground'
-import { GameService, NeighborCounterService } from './core'
+import { GameService, NeighborCounterService, SerializerService } from './core'
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { GameService, NeighborCounterService } from './core'
     BrowserModule,
   ],
   providers: [
+    SerializerService,
     NeighborCounterService,
     GameService,
   ],

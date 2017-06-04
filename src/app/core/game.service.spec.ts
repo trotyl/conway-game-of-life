@@ -2,13 +2,15 @@ import { TestBed, inject } from '@angular/core/testing'
 
 import { GameService } from './game.service'
 import { NeighborCounterService } from './neighbor-counter.service'
+import { SerializerService } from './serializer.service'
 
 describe('GameService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        GameService,
+        SerializerService,
         NeighborCounterService,
+        GameService,
       ]
     })
   })
