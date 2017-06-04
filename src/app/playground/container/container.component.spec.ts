@@ -12,7 +12,7 @@ describe('ContainerComponent', () => {
     mockGameService = {
       getStatus: () => false,
       toggleStatus: () => {},
-    }
+    } as any
   })
 
   beforeEach(async(() => {

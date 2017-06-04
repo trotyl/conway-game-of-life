@@ -16,4 +16,10 @@ describe('GameService', () => {
   it('should provide dead cell by default', inject([GameService], (service: GameService) => {
     expect(service.getStatus(1, 2)).toBe(false)
   }))
+
+  it('should support toggle dead to alive', inject([GameService], (service: GameService) => {
+    service.toggleStatus(1, 2)
+
+    expect(service.getStatus(1, 2)).toBe(true)
+  }))
 })
