@@ -34,11 +34,7 @@ export class GameService {
 
   toggleStatus(row: number, column: number): void {
     const key = this.serializer.serialize(row, column)
-    if (this.cells.has(key)) {
-      this.cells.delete(key)
-    } else {
-      this.cells.add(key)
-    }
+    this.setStatus(key, !this.cells.has(key))
   }
 
   private setStatus(cell: string, status: boolean): void {
