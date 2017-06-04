@@ -22,7 +22,7 @@ describe('InvariantStrategy', () => {
   }))
 
   it('should keep current status', inject([InvariantStrategy], (service: InvariantStrategy) => {
-    expect(service.apply(2, true)).toBeTruthy()
-    expect(service.apply(2, false)).toBeFalsy()
+    expect(service.apply(true)).toBeTruthy()
+    expect(service.apply(false)).toBeFalsy()
   }))
 })

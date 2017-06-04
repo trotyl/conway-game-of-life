@@ -8,7 +8,7 @@ export class InvariantStrategy implements EvolveStategy {
     return count === 2
   }
 
-  apply(count: number, status: boolean): boolean {
+  apply(status: boolean): boolean {
     return status
   }
 }

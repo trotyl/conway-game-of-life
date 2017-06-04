@@ -20,7 +20,7 @@ export class Game {
       for (const strategy of this.strategies) {
         if (strategy.applicableTo(count)) {
           const [x, y] = this.serializer.deserialize(cell)
-          const newStatus = strategy.apply(count, this.getStatus(x, y))
+          const newStatus = strategy.apply(this.getStatus(x, y))
           this.setStatus(cell, newStatus)
 
           break

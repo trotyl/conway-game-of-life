@@ -8,7 +8,7 @@ export class SurvivalStrategy implements EvolveStategy {
     return count === 3
   }
 
-  apply(count: number, status: boolean): boolean {
+  apply(status: boolean): boolean {
     return true
   }
 }

@@ -8,7 +8,7 @@ export class DefaultStrategy implements EvolveStategy {
     return true
   }
 
-  apply(count: number, status: boolean): boolean {
+  apply(status: boolean): boolean {
     return false
   }
 }

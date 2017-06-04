@@ -80,7 +80,7 @@ describe('Game basics', () => {
 
     service.evolve()
 
-    expect(spy).toHaveBeenCalledWith(1, false)
+    expect(spy).toHaveBeenCalledWith(false)
     expect(service.getStatus(1, 2)).toBeTruthy()
   }))
 

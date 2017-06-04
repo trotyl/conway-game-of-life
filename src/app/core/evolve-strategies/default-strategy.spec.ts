@@ -22,9 +22,7 @@ describe('DefaultStrategy', () => {
   }))
 
   it('should always die', inject([DefaultStrategy], (service: DefaultStrategy) => {
-    expect(service.apply(0, true)).toBeFalsy()
-    expect(service.apply(0, false)).toBeFalsy()
-    expect(service.apply(3, true)).toBeFalsy()
-    expect(service.apply(3, false)).toBeFalsy()
+    expect(service.apply(true)).toBeFalsy()
+    expect(service.apply(false)).toBeFalsy()
   }))
 })

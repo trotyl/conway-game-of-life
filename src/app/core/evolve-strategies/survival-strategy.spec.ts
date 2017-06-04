@@ -22,7 +22,7 @@ describe('SurvivalStrategy', () => {
   }))
 
   it('should always be alive', inject([SurvivalStrategy], (service: SurvivalStrategy) => {
-    expect(service.apply(3, true)).toBeTruthy()
-    expect(service.apply(3, false)).toBeTruthy()
+    expect(service.apply(true)).toBeTruthy()
+    expect(service.apply(false)).toBeTruthy()
   }))
 })
