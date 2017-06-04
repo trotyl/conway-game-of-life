@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { ContainerComponent } from './playground'
-import { GameService } from 'app/core/game.service'
+import { GameService } from './core'
 
 @NgModule({
   declarations: [

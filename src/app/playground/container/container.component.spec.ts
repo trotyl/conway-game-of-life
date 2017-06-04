@@ -1,7 +1,7 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 
+import { GameService } from 'app/core'
 import { ContainerComponent } from './container.component'
-import { GameService } from 'app/core/game.service'
 
 describe('ContainerComponent', () => {
   let component: ContainerComponent

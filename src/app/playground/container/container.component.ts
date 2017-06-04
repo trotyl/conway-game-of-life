@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { GameService } from 'app/core/game.service'
+
+import { GameService } from 'app/core'
 
 @Component({
   selector: 'app-container',
