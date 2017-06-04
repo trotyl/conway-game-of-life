@@ -97,3 +97,44 @@ describe('GameService', () => {
     expect(service.getStatus(1, 2)).toBeFalsy()
   }))
 })
+
+describe('Game with multi strategy', () => {
+  let mockStrategies: EvolveStategy[]
+
+  beforeEach(() => {
+    mockStrategies = [{
+      applicableTo: () => true,
+      apply: () => false
+    }, {
+      applicableTo: () => true,
+      apply: () => false
+    }]
+  })
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: EVOLVE_STRATEGIES, useValue: mockStrategies },
+        Serializer,
+        NeighborCounter,
+        Game,
+      ]
+    })
+  })
+
+  it('should only apply one strategy to one cell', inject([
+    Game, NeighborCounter, EVOLVE_STRATEGIES
+  ], (service: Game, counter: NeighborCounter, [strategyOne, strategyTwo]: EvolveStategy[]) => {
+
+    spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
+    spyOn(strategyOne, 'applicableTo').and.returnValue(true)
+    spyOn(strategyTwo, 'applicableTo').and.returnValue(true)
+    const spyOne = spyOn(strategyOne, 'apply').and.returnValue(true)
+    const spyTwo = spyOn(strategyTwo, 'apply').and.returnValue(true)
+
+    service.evolve()
+
+    expect(spyOne).toHaveBeenCalled()
+    expect(spyTwo).not.toHaveBeenCalled()
+  }))
+})

@@ -17,13 +17,15 @@ export class Game {
   evolve(): void {
     const counts = this.counter.calculate(this.cells)
     Array.from(counts.entries()).forEach(([cell, count]) => {
-      this.strategies.forEach(strategy => {
+      for (const strategy of this.strategies) {
         if (strategy.applicableTo(count)) {
           const [x, y] = this.serializer.deserialize(cell)
           const newStatus = strategy.apply(count, this.getStatus(x, y))
           this.setStatus(cell, newStatus)
+
+          break
         }
-      })
+      }
     })
   }
 
