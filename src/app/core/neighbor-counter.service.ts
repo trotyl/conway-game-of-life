@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core'
 
+import { SerializerService } from './serializer.service'
+
 @Injectable()
 export class NeighborCounterService {
+  constructor(private serializerService: SerializerService) { }
+
   calculate(cells: Set<string>): Map<string, number> {
     const counts = new Map<string, number>()
 
     cells.forEach((cell) => {
-      const [x, y] = cell.split(',').map(str => Number.parseInt(str)) as [number, number]
+      const [x, y] = this.serializerService.deserialize(cell)
 
       const neighbors = [
-        `${x - 1},${y - 1}`,
-        `${x - 1},${y}`,
-        `${x - 1},${y + 1}`,
-        `${x},${y - 1}`,
-        `${x},${y + 1}`,
-        `${x + 1},${y - 1}`,
-        `${x + 1},${y}`,
-        `${x + 1},${y + 1}`,
+        this.serializerService.serialize(x - 1, y - 1),
+        this.serializerService.serialize(x - 1, y),
+        this.serializerService.serialize(x - 1, y + 1),
+        this.serializerService.serialize(x, y - 1),
+        this.serializerService.serialize(x, y + 1),
+        this.serializerService.serialize(x + 1, y - 1),
+        this.serializerService.serialize(x + 1, y),
+        this.serializerService.serialize(x + 1, y + 1),
       ]
 
       neighbors.forEach(neighbor => {

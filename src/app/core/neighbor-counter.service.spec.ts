@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing'
 
 import { NeighborCounterService } from './neighbor-counter.service'
+import { SerializerService } from './serializer.service'
 
 interface Point {
   x: number
@@ -33,7 +34,10 @@ function parseCounts(mockup: string): [string, number][] {
 describe('NeighborCounterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NeighborCounterService]
+      providers: [
+        SerializerService,
+        NeighborCounterService,
+      ]
     })
   })
 
