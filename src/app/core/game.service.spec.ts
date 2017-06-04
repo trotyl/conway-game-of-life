@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing'
 
 import { GameService } from './game.service'
+import { NeighborCounterService } from './neighbor-counter.service'
 
 describe('GameService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GameService]
+      providers: [
+        GameService,
+        NeighborCounterService,
+      ]
     })
   })
 
@@ -29,5 +33,17 @@ describe('GameService', () => {
     service.toggleStatus(1, 2)
 
     expect(service.getStatus(1, 2)).toBe(false)
+  }))
+
+  it('should calculate the neighbor count', inject([
+    GameService, NeighborCounterService
+  ], (service: GameService, neighborCounterService: NeighborCounterService) => {
+    const spy = spyOn(neighborCounterService, 'calculate').and.returnValue(new Map())
+
+    service.toggleStatus(1, 2)
+    service.evolve()
+
+    const [cells] = spy.calls.mostRecent().args as [Set<string>]
+    expect(cells.has('1,2')).toBe(true)
   }))
 })

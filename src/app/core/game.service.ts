@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 
+import { NeighborCounterService } from './neighbor-counter.service'
+
 function serialize(row: number, column: number) {
   return `${row},${column}`
 }
@@ -8,7 +10,11 @@ function serialize(row: number, column: number) {
 export class GameService {
   private readonly cells = new Set<string>()
 
-  evolve(): void { }
+  constructor(private neighborCounterService: NeighborCounterService) { }
+
+  evolve(): void {
+    this.neighborCounterService.calculate(this.cells)
+  }
 
   getStatus(row: number, column: number): boolean {
     const key = serialize(row, column)
