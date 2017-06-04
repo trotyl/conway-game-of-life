@@ -13,6 +13,10 @@
   background-color: lightblue;
 }
 
+.grid-cell.alive {
+  background-color: #FF9800;
+}
+
 .controls-panel {
   margin-top: 20px;
   display: flex;

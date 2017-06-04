@@ -1,5 +1,5 @@
 <div *ngFor="let row of rows" class="grid-row">
-  <figure *ngFor="let column of columns" class="grid-cell" (click)="toggleCell(row, column)"></figure>
+  <figure *ngFor="let column of columns" class="grid-cell" [class.alive]="isCellAlive(row, column)" (click)="toggleCell(row, column)"></figure>
 </div>
 <div class="controls-panel">
   <button>Next</button>

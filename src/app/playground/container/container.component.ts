@@ -17,6 +17,10 @@ export class ContainerComponent implements OnInit {
     this.columns = new Array(20).fill(0).map((x, i) => i)
   }
 
+  isCellAlive(row: number, column: number): boolean {
+    return this.gameService.getStatus(row, column)
+  }
+
   toggleCell(row: number, column: number) {
     this.gameService.toggleStatus(row, column)
   }
