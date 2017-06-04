@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-
-  constructor() { }
+  rows: number[]
+  columns: number[]
 
   ngOnInit() {
+    this.rows = new Array(20).fill(0).map((x, i) => i)
+    this.columns = new Array(20).fill(0).map((x, i) => i)
   }
-
 }

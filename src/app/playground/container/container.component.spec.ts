@@ -22,4 +22,12 @@ describe('ContainerComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should have 20 rows', () => {
+    expect(component.rows.length).toBe(20)
+  })
+
+  it('should have 20 columns', () => {
+    expect(component.columns.length).toBe(20)
+  })
 })
