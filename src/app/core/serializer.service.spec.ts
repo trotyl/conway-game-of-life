@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing'
 
 import { Serializer } from './serializer.service'
 
-describe('SerializerService', () => {
+describe('Serializer', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [Serializer]

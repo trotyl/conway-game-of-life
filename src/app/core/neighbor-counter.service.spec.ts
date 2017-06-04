@@ -4,7 +4,7 @@ import { NeighborCounter } from './neighbor-counter.service'
 import { Serializer } from './serializer.service'
 import { parsePositions, parseCounts, toSortedArray } from './test-utils'
 
-describe('NeighborCounterService', () => {
+describe('NeighborCounter', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [

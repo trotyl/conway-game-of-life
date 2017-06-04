@@ -5,7 +5,7 @@ import { Game } from './game.service'
 import { NeighborCounter } from './neighbor-counter.service'
 import { Serializer } from './serializer.service'
 
-describe('GameService', () => {
+describe('Game basics', () => {
   let mockStrategies: EvolveStategy[]
 
   beforeEach(() => {
