@@ -5,10 +5,10 @@ import { EvolveStategy } from './abstract-strategy'
 @Injectable()
 export class SurvivalStrategy implements EvolveStategy {
   applicableTo(count: number): boolean {
-    throw new Error('Method not implemented.')
+    return count === 3
   }
 
   apply(count: number, status: boolean): boolean {
-    throw new Error('Method not implemented.')
+    return true
   }
 }
