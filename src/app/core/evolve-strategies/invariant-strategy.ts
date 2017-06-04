@@ -9,6 +9,6 @@ export class InvariantStrategy implements EvolveStategy {
   }
 
   apply(count: number, status: boolean): boolean {
-    throw new Error()
+    return status
   }
 }
