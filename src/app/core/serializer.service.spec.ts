@@ -9,15 +9,15 @@ describe('Serializer', () => {
     })
   })
 
-  it('should be created', inject([Serializer], (service: Serializer) => {
-    expect(service).toBeTruthy()
+  it('should be created', inject([Serializer], (serializer: Serializer) => {
+    expect(serializer).toBeTruthy()
   }))
 
-  it('should be able to serialize cell', inject([Serializer], (service: Serializer) => {
-    expect(service.serialize(1, 2)).toBe('1,2')
+  it('should be able to serialize cell', inject([Serializer], (serializer: Serializer) => {
+    expect(serializer.serialize(1, 2)).toBe('1,2')
   }))
 
-  it('should be able to deserialize token', inject([Serializer], (service: Serializer) => {
-    expect(service.deserialize('1,2')).toEqual([1, 2])
+  it('should be able to deserialize token', inject([Serializer], (serializer: Serializer) => {
+    expect(serializer.deserialize('1,2')).toEqual([1, 2])
   }))
 })
