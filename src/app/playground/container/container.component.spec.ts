@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { ContainerComponent } from './container.component'
 import { GameService } from 'app/core/game.service'
@@ -43,22 +43,20 @@ describe('ContainerComponent', () => {
     expect(component.columns.length).toBe(20)
   })
 
-  it('should toggle cell status in game', () => {
-    const gameService = fixture.debugElement.injector.get(GameService)
+  it('should toggle cell status in game', inject([GameService], (gameService: GameService) =>  {
     spyOn(gameService, 'toggleStatus')
 
     component.toggleCell(1, 2)
 
     expect(gameService.toggleStatus).toHaveBeenCalledWith(1, 2)
-  })
+  }))
 
-  it('should get cell status from game', () => {
-    const gameService = fixture.debugElement.injector.get(GameService)
+  it('should get cell status from game', inject([GameService], (gameService: GameService) => {
     spyOn(gameService, 'getStatus').and.returnValue(true)
 
     const status = component.isCellAlive(1, 2)
 
     expect(status).toBe(true)
     expect(gameService.getStatus).toHaveBeenCalledWith(1, 2)
-  })
+  }))
 })
