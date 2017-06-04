@@ -1,12 +1,12 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { GameService } from 'app/core'
+import { Game } from 'app/core'
 import { ContainerComponent } from './container.component'
 
 describe('ContainerComponent', () => {
   let component: ContainerComponent
   let fixture: ComponentFixture<ContainerComponent>
-  let mockGameService: GameService
+  let mockGameService: Game
 
   beforeEach(() => {
     mockGameService = {
@@ -20,7 +20,7 @@ describe('ContainerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContainerComponent ],
       providers: [
-        { provide: GameService, useValue: mockGameService },
+        { provide: Game, useValue: mockGameService },
       ]
     })
     .compileComponents()
@@ -44,7 +44,7 @@ describe('ContainerComponent', () => {
     expect(component.columns.length).toBe(20)
   })
 
-  it('should toggle cell status in game', inject([GameService], (game: GameService) =>  {
+  it('should toggle cell status in game', inject([Game], (game: Game) =>  {
     spyOn(game, 'toggleStatus')
 
     component.toggleCell(1, 2)
@@ -52,7 +52,7 @@ describe('ContainerComponent', () => {
     expect(game.toggleStatus).toHaveBeenCalledWith(1, 2)
   }))
 
-  it('should get cell status from game', inject([GameService], (game: GameService) => {
+  it('should get cell status from game', inject([Game], (game: Game) => {
     spyOn(game, 'getStatus').and.returnValue(true)
 
     const status = component.isCellAlive(1, 2)
@@ -61,7 +61,7 @@ describe('ContainerComponent', () => {
     expect(game.getStatus).toHaveBeenCalledWith(1, 2)
   }))
 
-  it('should be able to step', inject([GameService], (game: GameService) => {
+  it('should be able to step', inject([Game], (game: Game) => {
     spyOn(game, 'evolve')
 
     component.step()

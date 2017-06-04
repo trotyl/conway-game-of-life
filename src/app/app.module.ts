@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
-import { EVOLVE_STRATEGIES, DefaultStrategy, GameService, NeighborCounterService, SerializerService } from './core'
+import { EVOLVE_STRATEGIES, DefaultStrategy, Game, NeighborCounter, Serializer } from './core'
 import { ContainerComponent } from './playground'
 
 @NgModule({
@@ -15,9 +15,9 @@ import { ContainerComponent } from './playground'
   ],
   providers: [
     { provide: EVOLVE_STRATEGIES, useClass: DefaultStrategy, multi: true },
-    SerializerService,
-    NeighborCounterService,
-    GameService,
+    Serializer,
+    NeighborCounter,
+    Game,
   ],
   bootstrap: [AppComponent]
 })

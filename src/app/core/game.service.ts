@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@angular/core'
 
 import { EVOLVE_STRATEGIES, EvolveStategy } from './evolve-strategies'
-import { NeighborCounterService } from './neighbor-counter.service'
-import { SerializerService } from './serializer.service'
+import { NeighborCounter } from './neighbor-counter.service'
+import { Serializer } from './serializer.service'
 
 @Injectable()
-export class GameService {
+export class Game {
   private readonly cells = new Set<string>()
 
   constructor(
     @Inject(EVOLVE_STRATEGIES) private strategies: EvolveStategy[],
-    private counter: NeighborCounterService,
-    private serializer: SerializerService,
+    private counter: NeighborCounter,
+    private serializer: Serializer,
   ) { }
 
   evolve(): void {

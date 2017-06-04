@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 @Injectable()
-export class SerializerService {
+export class Serializer {
   serialize(row: number, column: number): string {
     return `${row},${column}`
   }

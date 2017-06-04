@@ -1,24 +1,24 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { NeighborCounterService } from './neighbor-counter.service'
-import { SerializerService } from './serializer.service'
+import { NeighborCounter } from './neighbor-counter.service'
+import { Serializer } from './serializer.service'
 import { parsePositions, parseCounts, toSortedArray } from './test-utils'
 
 describe('NeighborCounterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        SerializerService,
-        NeighborCounterService,
+        Serializer,
+        NeighborCounter,
       ]
     })
   })
 
-  it('should be created', inject([NeighborCounterService], (service: NeighborCounterService) => {
+  it('should be created', inject([NeighborCounter], (service: NeighborCounter) => {
     expect(service).toBeTruthy()
   }))
 
-  it('should be able to count neighbors', inject([NeighborCounterService], (service: NeighborCounterService) => {
+  it('should be able to count neighbors', inject([NeighborCounter], (service: NeighborCounter) => {
     const counts = service.calculate(parsePositions(`
       ----
       -XX-

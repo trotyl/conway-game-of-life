@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 
-import { GameService } from 'app/core'
+import { Game } from 'app/core'
 
 @Component({
   selector: 'app-container',
@@ -11,7 +11,7 @@ export class ContainerComponent implements OnInit {
   rows: number[]
   columns: number[]
 
-  constructor(private game: GameService) { }
+  constructor(private game: Game) { }
 
   ngOnInit(): void {
     this.rows = new Array(20).fill(0).map((x, i) => i)

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
 
-import { SerializerService } from './serializer.service'
+import { Serializer } from './serializer.service'
 
 @Injectable()
-export class NeighborCounterService {
-  constructor(private serializer: SerializerService) { }
+export class NeighborCounter {
+  constructor(private serializer: Serializer) { }
 
   calculate(cells: Set<string>): Map<string, number> {
     const counts = new Map<string, number>()
