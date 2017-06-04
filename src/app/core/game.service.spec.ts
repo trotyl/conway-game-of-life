@@ -12,4 +12,8 @@ describe('GameService', () => {
   it('should be created', inject([GameService], (service: GameService) => {
     expect(service).toBeTruthy()
   }))
+
+  it('should provide dead cell by default', inject([GameService], (service: GameService) => {
+    expect(service.getStatus(1, 2)).toBe(false)
+  }))
 })
