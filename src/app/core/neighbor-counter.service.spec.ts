@@ -18,7 +18,21 @@ describe('NeighborCounter', () => {
     expect(counter).toBeTruthy()
   }))
 
-  it('should be able to count neighbors', inject([NeighborCounter], (counter: NeighborCounter) => {
+  it('should be able to count neighbors for single point', inject([NeighborCounter], (counter: NeighborCounter) => {
+    const counts = counter.calculate(parsePositions(`
+      ---
+      -X-
+      ---
+    `))
+
+    expect(toSortedArray(counts.entries())).toEqual(parseCounts(`
+      111
+      101
+      111
+    `))
+  }))
+
+  it('should be able to count neighbors for multi points', inject([NeighborCounter], (counter: NeighborCounter) => {
     const counts = counter.calculate(parsePositions(`
       ----
       -XX-
