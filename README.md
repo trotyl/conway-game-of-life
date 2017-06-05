@@ -1,4 +1,5 @@
 [![Travis](https://img.shields.io/travis/trotyl/conway-game-of-life.svg)](https://travis-ci.org/trotyl/conway-game-of-life)
+[![Codecov](https://img.shields.io/codecov/c/github/trotyl/conway-game-of-life.svg)](https://codecov.io/gh/trotyl/conway-game-of-life)
 
 # ConwayGameOfLife
 
@@ -30,6 +31,8 @@ All tests passed.
 100% line coverage.
 
 ![Coverage Report](./resources/coverage.png)
+
+*The coverage in CI not reach 100% only caused by source map problem.*
 
 ---
 
