@@ -231,4 +231,34 @@ describe('Game integration', () => {
       -----
     `)
   }))
+
+  it('should spread for line of lengh 4', inject([Game], (game: Game) => {
+    initGame(game, `
+      ------
+      ------
+      -XXXX-
+      ------
+      ------
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ------
+      --XX--
+      --XX--
+      --XX--
+      ------
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ------
+      --XX--
+      -X--X-
+      --XX--
+      ------
+    `)
+  }))
 })
