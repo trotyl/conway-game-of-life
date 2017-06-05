@@ -2,6 +2,39 @@
 
 # ConwayGameOfLife
 
+This is a demo project for TDD practice.
+
+## Technology
+
++ Object-Oriented
++ Dependency Injection
++ Strategy Design Pattern
++ Sparse Matrix
++ GUI Integration
+
+## Tech stack
+
++ Angular
++ TypeScript
++ Karma
++ Jasmine
+
+## Unit Tests
+
+All tests passed.
+
+![Karma Runner](./resources/karma.png)
+
+## Test Coverage
+
+100% line coverage.
+
+![Coverage Report](./resources/coverage.png)
+
+---
+
+# Build info
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0-beta.0.
 
 ## Development server
