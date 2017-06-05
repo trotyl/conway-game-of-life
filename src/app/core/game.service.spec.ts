@@ -77,7 +77,7 @@ describe('Game basics', () => {
     Game, NeighborCounter, EVOLVE_STRATEGIES
   ], (game: Game, counter: NeighborCounter, [strategy]: EvolveStategy[]) => {
     spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
-    const spy = spyOn(strategy, 'applicableTo')
+    const spy = spyOn(strategy, 'applicableTo').and.returnValue(true)
 
     game.evolve()
 
@@ -95,19 +95,6 @@ describe('Game basics', () => {
 
     expect(spy).toHaveBeenCalledWith(false)
     expect(game.getStatus(1, 2)).toBeTruthy()
-  }))
-
-  it('should not apply strategy if not applicable', inject([
-    Game, NeighborCounter, EVOLVE_STRATEGIES
-  ], (game: Game, counter: NeighborCounter, [strategy]: EvolveStategy[]) => {
-    spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
-    spyOn(strategy, 'applicableTo').and.returnValue(false)
-    const spy = spyOn(strategy, 'apply').and.returnValue(true)
-
-    game.evolve()
-
-    expect(spy).not.toHaveBeenCalled()
-    expect(game.getStatus(1, 2)).toBeFalsy()
   }))
 
   it('should be able to reset', inject([Game], (game: Game) => {
@@ -157,6 +144,23 @@ describe('Game with multi strategy', () => {
 
     expect(spyOne).toHaveBeenCalled()
     expect(spyTwo).not.toHaveBeenCalled()
+  }))
+
+
+  it('should not apply strategy if not applicable', inject([
+    Game, NeighborCounter, EVOLVE_STRATEGIES
+  ], (game: Game, counter: NeighborCounter, [strategyOne, strategyTwo]: EvolveStategy[]) => {
+
+    spyOn(counter, 'calculate').and.returnValue(new Map([['1,2', 1]]))
+    spyOn(strategyOne, 'applicableTo').and.returnValue(false)
+    spyOn(strategyTwo, 'applicableTo').and.returnValue(true)
+    const spyOne = spyOn(strategyOne, 'apply').and.returnValue(true)
+    const spyTwo = spyOn(strategyTwo, 'apply').and.returnValue(true)
+
+    game.evolve()
+
+    expect(spyOne).not.toHaveBeenCalled()
+    expect(spyTwo).toHaveBeenCalled()
   }))
 })
 

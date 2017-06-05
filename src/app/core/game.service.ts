@@ -22,15 +22,10 @@ export class Game {
       .forEach(cell => counts.set(cell, 0))
 
     Array.from(counts.entries()).forEach(([cell, count]) => {
-      for (const strategy of this.strategies) {
-        if (strategy.applicableTo(count)) {
-          const [x, y] = this.serializer.deserialize(cell)
-          const newStatus = strategy.apply(this.getStatus(x, y))
-          this.setStatus(cell, newStatus)
-
-          break
-        }
-      }
+      const [strategy] = this.strategies.filter(s => s.applicableTo(count))
+      const [x, y] = this.serializer.deserialize(cell)
+      const newStatus = strategy.apply(this.getStatus(x, y))
+      this.setStatus(cell, newStatus)
     })
   }
 
