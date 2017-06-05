@@ -16,6 +16,11 @@ export class Game {
 
   evolve(): void {
     const counts = this.counter.calculate(this.cells)
+
+    Array.from(this.cells)
+      .filter(cell => !counts.has(cell))
+      .forEach(cell => counts.set(cell, 0))
+
     Array.from(counts.entries()).forEach(([cell, count]) => {
       for (const strategy of this.strategies) {
         if (strategy.applicableTo(count)) {

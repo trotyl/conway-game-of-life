@@ -14,7 +14,7 @@ function initGame(game: Game, mockup: string) {
 function expectGameAs(game: Game, mockup: string) {
   parseMockup(mockup)
     .forEach(({ x, y, c }) => {
-      expect(game.getStatus(x, y)).toBe(c !== '-')
+      expect(`${x},${y},${game.getStatus(x, y)}`).toEqual(`${x},${y},${c !== '-'}`)
     })
 }
 
@@ -65,12 +65,12 @@ describe('Game basics', () => {
     Game, NeighborCounter
   ], (game: Game, counter: NeighborCounter) => {
     const spy = spyOn(counter, 'calculate').and.returnValue(new Map())
-
     game.toggleStatus(1, 2)
+    expect(spy).not.toHaveBeenCalled()
+
     game.evolve()
 
-    const [cells] = spy.calls.mostRecent().args as [Set<string>]
-    expect(cells.has('1,2')).toBe(true)
+    expect(spy).toHaveBeenCalled()
   }))
 
   it('should use evolve strategies for neighbored cells', inject([
@@ -174,6 +174,30 @@ describe('Game integration', () => {
       ]
     })
   })
+
+  it('should extinct for single one', inject([Game], (game: Game) => {
+    initGame(game, `
+      ---
+      -X-
+      ---
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ---
+      ---
+      ---
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ---
+      ---
+      ---
+    `)
+  }))
 
   it('should result to square for right angle', inject([Game], (game: Game) => {
     initGame(game, `
