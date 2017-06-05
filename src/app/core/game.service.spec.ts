@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { EVOLVE_STRATEGIES, EvolveStategy, SurvivalStrategy, InvariantStrategy, DefaultStrategy } from './evolve-strategies'
+import { EVOLVE_STRATEGIES, EvolveStategy, SurvivalStrategy, InvariantStrategy, ExtinctStrategy } from './evolve-strategies'
 import { Game } from './game.service'
 import { NeighborCounter } from './neighbor-counter.service'
 import { Serializer } from './serializer.service'
@@ -171,7 +171,7 @@ describe('Game integration', () => {
       providers: [
         { provide: EVOLVE_STRATEGIES, useClass: SurvivalStrategy, multi: true },
         { provide: EVOLVE_STRATEGIES, useClass: InvariantStrategy, multi: true },
-        { provide: EVOLVE_STRATEGIES, useClass: DefaultStrategy, multi: true },
+        { provide: EVOLVE_STRATEGIES, useClass: ExtinctStrategy, multi: true },
         Serializer,
         NeighborCounter,
         Game,
