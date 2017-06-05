@@ -201,4 +201,34 @@ describe('Game integration', () => {
       ----
     `)
   }))
+
+  it('should transpose for line of lengh 3', inject([Game], (game: Game) => {
+    initGame(game, `
+      -----
+      -----
+      -XXX-
+      -----
+      -----
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      -----
+      --X--
+      --X--
+      --X--
+      -----
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      -----
+      -----
+      -XXX-
+      -----
+      -----
+    `)
+  }))
 })
