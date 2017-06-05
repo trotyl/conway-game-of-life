@@ -13,10 +13,15 @@ export function parseMockup(mockup: string): Point[] {
       [] as Point[])
 }
 
-export function parsePositions(mockup: string): Set<string> {
-  const positions = parseMockup(mockup)
+export function parsePositionsToArray(mockup: string): [number, number][] {
+  return parseMockup(mockup)
     .filter(({ c }) => c !== '-')
-    .map(({ x, y }) => `${x},${y}`)
+    .map(({ x, y }) => [x, y] as [number, number])
+}
+
+export function parsePositions(mockup: string): Set<string> {
+  const positions = parsePositionsToArray(mockup)
+    .map(([ x, y ]) => `${x},${y}`)
   return new Set(positions)
 }
 

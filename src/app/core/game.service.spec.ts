@@ -1,9 +1,22 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { EVOLVE_STRATEGIES, EvolveStategy } from './evolve-strategies'
+import { EVOLVE_STRATEGIES, EvolveStategy, SurvivalStrategy, InvariantStrategy, DefaultStrategy } from './evolve-strategies'
 import { Game } from './game.service'
 import { NeighborCounter } from './neighbor-counter.service'
 import { Serializer } from './serializer.service'
+import { parseMockup, parsePositionsToArray } from './test-utils'
+
+function initGame(game: Game, mockup: string) {
+  game.reset()
+  parsePositionsToArray(mockup).forEach(([x, y]) => game.toggleStatus(x, y))
+}
+
+function expectGameAs(game: Game, mockup: string) {
+  parseMockup(mockup)
+    .forEach(({ x, y, c }) => {
+      expect(game.getStatus(x, y)).toBe(c !== '-')
+    })
+}
 
 describe('Game basics', () => {
   let mockStrategies: EvolveStategy[]
@@ -144,5 +157,48 @@ describe('Game with multi strategy', () => {
 
     expect(spyOne).toHaveBeenCalled()
     expect(spyTwo).not.toHaveBeenCalled()
+  }))
+})
+
+describe('Game integration', () => {
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: EVOLVE_STRATEGIES, useClass: SurvivalStrategy, multi: true },
+        { provide: EVOLVE_STRATEGIES, useClass: InvariantStrategy, multi: true },
+        { provide: EVOLVE_STRATEGIES, useClass: DefaultStrategy, multi: true },
+        Serializer,
+        NeighborCounter,
+        Game,
+      ]
+    })
+  })
+
+  it('should result to square for right angle', inject([Game], (game: Game) => {
+    initGame(game, `
+      ----
+      -XX-
+      -X--
+      ----
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ----
+      -XX-
+      -XX-
+      ----
+    `)
+
+    game.evolve()
+
+    expectGameAs(game, `
+      ----
+      -XX-
+      -XX-
+      ----
+    `)
   }))
 })
