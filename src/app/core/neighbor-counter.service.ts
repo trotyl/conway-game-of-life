@@ -10,18 +10,7 @@ export class NeighborCounter {
     const counts = new Map<string, number>()
 
     cells.forEach((cell) => {
-      const [x, y] = this.serializer.deserialize(cell)
-
-      const neighbors = [
-        this.serializer.serialize(x - 1, y - 1),
-        this.serializer.serialize(x - 1, y),
-        this.serializer.serialize(x - 1, y + 1),
-        this.serializer.serialize(x, y - 1),
-        this.serializer.serialize(x, y + 1),
-        this.serializer.serialize(x + 1, y - 1),
-        this.serializer.serialize(x + 1, y),
-        this.serializer.serialize(x + 1, y + 1),
-      ]
+      const neighbors = this.getNeighbors(cell)
 
       neighbors.forEach(neighbor => {
         if (!counts.has(neighbor)) {
@@ -32,5 +21,20 @@ export class NeighborCounter {
     })
 
     return counts
+  }
+
+  private getNeighbors(cell: string): string[] {
+    const [x, y] = this.serializer.deserialize(cell)
+
+    return [
+      this.serializer.serialize(x - 1, y - 1),
+      this.serializer.serialize(x - 1, y),
+      this.serializer.serialize(x - 1, y + 1),
+      this.serializer.serialize(x, y - 1),
+      this.serializer.serialize(x, y + 1),
+      this.serializer.serialize(x + 1, y - 1),
+      this.serializer.serialize(x + 1, y),
+      this.serializer.serialize(x + 1, y + 1),
+    ]
   }
 }
