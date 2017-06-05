@@ -1,3 +1,5 @@
+[![Travis](https://img.shields.io/travis/trotyl/conway-game-of-life.svg)](https://travis-ci.org/trotyl/conway-game-of-life)
+
 # ConwayGameOfLife
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0-beta.0.
