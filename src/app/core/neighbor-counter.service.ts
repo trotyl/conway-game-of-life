@@ -27,14 +27,9 @@ export class NeighborCounter {
     const [x, y] = this.serializer.deserialize(cell)
 
     return [
-      this.serializer.serialize(x - 1, y - 1),
-      this.serializer.serialize(x - 1, y),
-      this.serializer.serialize(x - 1, y + 1),
-      this.serializer.serialize(x, y - 1),
-      this.serializer.serialize(x, y + 1),
-      this.serializer.serialize(x + 1, y - 1),
-      this.serializer.serialize(x + 1, y),
-      this.serializer.serialize(x + 1, y + 1),
-    ]
+      [x - 1, y - 1], [x - 1, y], [x - 1, y + 1],
+      [x    , y - 1],             [x    , y + 1],
+      [x + 1, y - 1], [x + 1, y], [x + 1, y + 1],
+    ].map(([row, column]) => this.serializer.serialize(row, column))
   }
 }
