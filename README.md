@@ -1,6 +1,6 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/05b4af5b12fa404ca6231673734c9b73)](https://www.codacy.com/app/trotyl/conway-game-of-life?utm_source=github.com&utm_medium=referral&utm_content=trotyl/conway-game-of-life&utm_campaign=badger)
 [![Travis](https://img.shields.io/travis/trotyl/conway-game-of-life.svg)](https://travis-ci.org/trotyl/conway-game-of-life)
 [![Codecov](https://img.shields.io/codecov/c/github/trotyl/conway-game-of-life.svg)](https://codecov.io/gh/trotyl/conway-game-of-life)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/05b4af5b12fa404ca6231673734c9b73)](https://www.codacy.com/app/trotyl/conway-game-of-life?utm_source=github.com&utm_medium=referral&utm_content=trotyl/conway-game-of-life&utm_campaign=badger)
 
 # ConwayGameOfLife
 
